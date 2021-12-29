@@ -37,72 +37,48 @@ public class Login extends javax.swing.JFrame {
         passwordfield = new javax.swing.JPasswordField();
         signinButton = new javax.swing.JButton();
         resetButton = new javax.swing.JButton();
+        backgroundLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("FOOD ORDERING SYSTEM");
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         loginLabel.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        loginLabel.setText("                                     LOGIN");
+        loginLabel.setText("                                  LOGIN");
+        getContentPane().add(loginLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 370, -1));
 
         usernameLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         usernameLabel.setText("Username");
+        getContentPane().add(usernameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, -1, -1));
+        getContentPane().add(usernameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 223, -1));
 
         passwordLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         passwordLabel.setText("Password");
+        getContentPane().add(passwordLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, -1, -1));
+        getContentPane().add(passwordfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 223, -1));
 
         signinButton.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        signinButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Login.png"))); // NOI18N
         signinButton.setText("Sign In");
         signinButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 signinButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(signinButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, -1, -1));
 
         resetButton.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        resetButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Reset.png"))); // NOI18N
         resetButton.setText("Reset");
         resetButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 resetButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(resetButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, 126, 56));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(84, 84, 84)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(signinButton)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(passwordLabel)
-                        .addComponent(usernameLabel)
-                        .addComponent(usernameTextField)
-                        .addComponent(passwordfield, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(resetButton)
-                .addContainerGap(15, Short.MAX_VALUE))
-            .addComponent(loginLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(loginLabel)
-                .addGap(18, 18, 18)
-                .addComponent(usernameLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(usernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(passwordLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(passwordfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(signinButton)
-                    .addComponent(resetButton))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        backgroundLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo.png"))); // NOI18N
+        getContentPane().add(backgroundLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 350));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -157,6 +133,7 @@ public class Login extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel backgroundLabel;
     private javax.swing.JLabel loginLabel;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JPasswordField passwordfield;

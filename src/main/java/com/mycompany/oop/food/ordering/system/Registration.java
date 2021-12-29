@@ -35,74 +35,50 @@ public class Registration extends javax.swing.JFrame {
         passwordfield = new javax.swing.JPasswordField();
         signupButton = new javax.swing.JButton();
         resetButton = new javax.swing.JButton();
+        backgroundLabel = new javax.swing.JLabel();
+        backgroundLabell = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("FOOD ORDERING SYSTEM");
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         registerLabel.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        registerLabel.setText("                                   REGISTER");
+        registerLabel.setText("                              REGISTER");
+        getContentPane().add(registerLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 370, -1));
 
         usernameLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         usernameLabel.setText("Username");
+        getContentPane().add(usernameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 45, -1, -1));
+        getContentPane().add(usernameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 68, 197, -1));
 
         passwordLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         passwordLabel.setText("Password");
+        getContentPane().add(passwordLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, -1, -1));
+        getContentPane().add(passwordfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 197, -1));
 
         signupButton.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        signupButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Register.png"))); // NOI18N
         signupButton.setText("Sign Up");
         signupButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 signupButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(signupButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, -1, -1));
 
         resetButton.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        resetButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Reset.png"))); // NOI18N
         resetButton.setText("Reset");
         resetButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 resetButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(resetButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, -1, 56));
+        getContentPane().add(backgroundLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(registerLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(103, 103, 103)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(passwordLabel)
-                    .addComponent(usernameLabel)
-                    .addComponent(usernameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
-                    .addComponent(passwordfield))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(signupButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(resetButton)
-                .addGap(19, 19, 19))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(registerLabel)
-                .addGap(18, 18, 18)
-                .addComponent(usernameLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(usernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(passwordLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(passwordfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(resetButton)
-                    .addComponent(signupButton))
-                .addGap(82, 82, 82))
-        );
+        backgroundLabell.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo.png"))); // NOI18N
+        getContentPane().add(backgroundLabell, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -161,6 +137,8 @@ public class Registration extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel backgroundLabel;
+    private javax.swing.JLabel backgroundLabell;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JPasswordField passwordfield;
     private javax.swing.JLabel registerLabel;
