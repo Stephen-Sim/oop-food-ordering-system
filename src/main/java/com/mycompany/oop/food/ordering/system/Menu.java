@@ -28,28 +28,71 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        titleLabel = new javax.swing.JLabel();
+        usernameLabel = new javax.swing.JLabel();
+        usernameTextField = new javax.swing.JTextField();
+        passwordLabel = new javax.swing.JLabel();
+        passwordTextField = new javax.swing.JPasswordField();
+        signinButton = new javax.swing.JButton();
+        resetButton = new javax.swing.JButton();
         backgroundLabel = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
-        loginMenuItem = new javax.swing.JMenuItem();
         registerMenuItem = new javax.swing.JMenuItem();
         exitMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("FOOD ORDERING SYSTEM");
         setBackground(new java.awt.Color(255, 255, 255));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        backgroundLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo.png"))); // NOI18N
+        titleLabel.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        titleLabel.setText("LOGIN");
+        getContentPane().add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, -1));
 
-        fileMenu.setText("File");
+        usernameLabel.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        usernameLabel.setText("Username");
+        getContentPane().add(usernameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, -1, -1));
 
-        loginMenuItem.setText("Login");
-        loginMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        usernameTextField.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        usernameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginMenuItemActionPerformed(evt);
+                usernameTextFieldActionPerformed(evt);
             }
         });
-        fileMenu.add(loginMenuItem);
+        getContentPane().add(usernameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 200, -1));
+
+        passwordLabel.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        passwordLabel.setText("Password");
+        getContentPane().add(passwordLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, -1, -1));
+
+        passwordTextField.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        getContentPane().add(passwordTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 200, -1));
+
+        signinButton.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        signinButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Login.png"))); // NOI18N
+        signinButton.setText("Sign In");
+        signinButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signinButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(signinButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, -1, -1));
+
+        resetButton.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        resetButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Reset.png"))); // NOI18N
+        resetButton.setText("Reset");
+        resetButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resetButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(resetButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 130, 50));
+
+        backgroundLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo.png"))); // NOI18N
+        getContentPane().add(backgroundLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, -1));
+
+        fileMenu.setText("File");
 
         registerMenuItem.setText("Register");
         registerMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -71,24 +114,8 @@ public class Menu extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar1);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(backgroundLabel)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(backgroundLabel)
-        );
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void loginMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginMenuItemActionPerformed
-        // TODO add your handling code here:
-        new Login().setVisible(true);
-    }//GEN-LAST:event_loginMenuItemActionPerformed
 
     private void registerMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerMenuItemActionPerformed
         // TODO add your handling code here:
@@ -100,6 +127,25 @@ public class Menu extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Thank you for using our system!");
         System.exit(0);
     }//GEN-LAST:event_exitMenuItemActionPerformed
+
+    private void usernameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameTextFieldActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_usernameTextFieldActionPerformed
+
+    private void signinButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signinButtonActionPerformed
+        // TODO add your handling code here:
+        if (usernameTextField.getText().isEmpty() || passwordTextField.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "Please complete the form.");
+        }
+    }//GEN-LAST:event_signinButtonActionPerformed
+
+    private void resetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetButtonActionPerformed
+        // TODO add your handling code here:
+        usernameTextField.setText("");
+        passwordTextField.setText("");
+    }//GEN-LAST:event_resetButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -141,7 +187,13 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem loginMenuItem;
+    private javax.swing.JLabel passwordLabel;
+    private javax.swing.JPasswordField passwordTextField;
     private javax.swing.JMenuItem registerMenuItem;
+    private javax.swing.JButton resetButton;
+    private javax.swing.JButton signinButton;
+    private javax.swing.JLabel titleLabel;
+    private javax.swing.JLabel usernameLabel;
+    private javax.swing.JTextField usernameTextField;
     // End of variables declaration//GEN-END:variables
 }
