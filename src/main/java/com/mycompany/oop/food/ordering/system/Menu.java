@@ -4,6 +4,11 @@
  */
 package com.mycompany.oop.food.ordering.system;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
@@ -138,6 +143,36 @@ public class Menu extends javax.swing.JFrame {
         if (usernameTextField.getText().isEmpty() || passwordTextField.getText().isEmpty())
         {
             JOptionPane.showMessageDialog(null, "Please complete the form.");
+        }
+        else
+        {
+            try
+            {
+                String username = usernameTextField.getText();
+                String password = passwordTextField.getText();
+                String host = "jdbc:mysql://localhost:3306/";
+                String dbname = "food_ordering_system";
+                String user = "root";
+                String pass = "";
+                Connection conn = DriverManager.getConnection(host+dbname, user, pass);
+                String sql = "SELECT * FROM users WHERE username = ? AND PASSWORD = ?";
+                PreparedStatement ps = conn.prepareStatement(sql);
+                 ps.setString(1, username);
+                 ps.setString(2, password);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next())
+                {
+                    JOptionPane.showMessageDialog(null, "Login Successfully. Welcome back!");
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "Login failed. Possible incorrect credentials or record not found.");
+                }
+            }
+            catch (SQLException err)
+            {
+                JOptionPane.showMessageDialog(null, err.getMessage());
+            }
         }
     }//GEN-LAST:event_signinButtonActionPerformed
 

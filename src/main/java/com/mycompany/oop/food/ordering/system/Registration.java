@@ -4,6 +4,12 @@
  */
 package com.mycompany.oop.food.ordering.system;
 
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
@@ -32,7 +38,7 @@ public class Registration extends javax.swing.JFrame {
         usernameLabel = new javax.swing.JLabel();
         usernameTextField = new javax.swing.JTextField();
         passwordLabel = new javax.swing.JLabel();
-        passwordfield = new javax.swing.JPasswordField();
+        passwordTextField = new javax.swing.JPasswordField();
         signupButton = new javax.swing.JButton();
         resetButton = new javax.swing.JButton();
         backgroundLabel = new javax.swing.JLabel();
@@ -54,7 +60,7 @@ public class Registration extends javax.swing.JFrame {
         passwordLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         passwordLabel.setText("Password");
         getContentPane().add(passwordLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, -1, -1));
-        getContentPane().add(passwordfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 197, -1));
+        getContentPane().add(passwordTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 197, -1));
 
         signupButton.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         signupButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Register.png"))); // NOI18N
@@ -82,23 +88,53 @@ public class Registration extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    public void close()
+    {
+        WindowEvent winClosingEvent = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosingEvent);
+    }
+    
     private void signupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupButtonActionPerformed
         // TODO add your handling code here:
-        if (usernameTextField.getText().isEmpty() || passwordfield.getText().isEmpty())
+        if (usernameTextField.getText().isEmpty() || passwordTextField.getText().isEmpty())
         {
             JOptionPane.showMessageDialog(null, "Please complete the form.");
         }
-        if (passwordfield.getText().length() < 8)
+        if (passwordTextField.getText().length() < 8)
         {
             JOptionPane.showMessageDialog(null, "Password must have at least 8 characters.");
+        }
+        else
+        {
+            try
+            {
+                 String username = usernameTextField.getText();
+                 String password = passwordTextField.getText();
+                 String host = "jdbc:mysql://localhost:3306/";
+                 String dbname = "food_ordering_system";
+                 String user = "root";
+                 String pass = "";
+                 Connection conn = DriverManager.getConnection(host+dbname, user, pass);
+                 String sql = "INSERT INTO users (username, PASSWORD) VALUES (?, ?)";
+                 PreparedStatement ps = conn.prepareStatement(sql);
+                 ps.setString(1, username);
+                 ps.setString(2, password);
+                 ps.executeUpdate();
+                 JOptionPane.showMessageDialog(null, "Successfully Registered. Welcome!");
+                 close();
+            }
+            catch (SQLException err)
+            {
+                 JOptionPane.showMessageDialog(null, err.getMessage());
+            }
         }
     }//GEN-LAST:event_signupButtonActionPerformed
 
     private void resetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetButtonActionPerformed
         // TODO add your handling code here:
         usernameTextField.setText("");
-        passwordfield.setText("");  
+        passwordTextField.setText("");  
     }//GEN-LAST:event_resetButtonActionPerformed
 
     /**
@@ -140,7 +176,7 @@ public class Registration extends javax.swing.JFrame {
     private javax.swing.JLabel backgroundLabel;
     private javax.swing.JLabel backgroundLabell;
     private javax.swing.JLabel passwordLabel;
-    private javax.swing.JPasswordField passwordfield;
+    private javax.swing.JPasswordField passwordTextField;
     private javax.swing.JLabel registerLabel;
     private javax.swing.JButton resetButton;
     private javax.swing.JButton signupButton;
