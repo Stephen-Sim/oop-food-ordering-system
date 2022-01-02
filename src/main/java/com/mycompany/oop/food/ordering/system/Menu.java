@@ -193,6 +193,9 @@ public class Menu extends javax.swing.JFrame {
                     {
                         new AdminPanel().setVisible(true);
                     }
+                    else {
+                        new CustomerMenu().setVisible(true);
+                    }
                 }
                 else
                 {
