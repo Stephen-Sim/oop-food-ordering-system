@@ -70,7 +70,7 @@ public class Registration extends javax.swing.JFrame {
                 signupButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(signupButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, -1, -1));
+        getContentPane().add(signupButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, -1, 60));
 
         resetButton.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         resetButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Reset.png"))); // NOI18N
@@ -80,7 +80,7 @@ public class Registration extends javax.swing.JFrame {
                 resetButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(resetButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, -1, 56));
+        getContentPane().add(resetButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, -1, 60));
         getContentPane().add(backgroundLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, -1));
 
         backgroundLabell.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo.png"))); // NOI18N
@@ -133,8 +133,7 @@ public class Registration extends javax.swing.JFrame {
 
     private void resetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetButtonActionPerformed
         // TODO add your handling code here:
-        usernameTextField.setText("");
-        passwordTextField.setText("");  
+        clearForm(); 
     }//GEN-LAST:event_resetButtonActionPerformed
 
     /**
@@ -170,6 +169,12 @@ public class Registration extends javax.swing.JFrame {
                 new Registration().setVisible(true);
             }
         });
+    }
+    
+    public void clearForm()
+    {
+        usernameTextField.setText("");
+        passwordTextField.setText("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
