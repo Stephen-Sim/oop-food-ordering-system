@@ -4,6 +4,9 @@
  */
 package com.mycompany.oop.food.ordering.system;
 
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
+
 /**
  *
  * @author Admin
@@ -37,8 +40,8 @@ public class CustomerMenu extends javax.swing.JFrame {
         resetButton = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
-        jCheckBoxMenuItem2 = new javax.swing.JCheckBoxMenuItem();
+        cartMenuItem = new javax.swing.JMenuItem();
+        logoutMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -99,23 +102,21 @@ public class CustomerMenu extends javax.swing.JFrame {
 
         jMenu1.setText("File");
 
-        jCheckBoxMenuItem1.setSelected(true);
-        jCheckBoxMenuItem1.setText("Cart");
-        jCheckBoxMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        cartMenuItem.setText("Cart");
+        cartMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBoxMenuItem1ActionPerformed(evt);
+                cartMenuItemActionPerformed(evt);
             }
         });
-        jMenu1.add(jCheckBoxMenuItem1);
+        jMenu1.add(cartMenuItem);
 
-        jCheckBoxMenuItem2.setSelected(true);
-        jCheckBoxMenuItem2.setText("Log Out");
-        jCheckBoxMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        logoutMenuItem.setText("Logout");
+        logoutMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBoxMenuItem2ActionPerformed(evt);
+                logoutMenuItemActionPerformed(evt);
             }
         });
-        jMenu1.add(jCheckBoxMenuItem2);
+        jMenu1.add(logoutMenuItem);
 
         jMenuBar1.add(jMenu1);
 
@@ -170,18 +171,26 @@ public class CustomerMenu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    public void close()
+    {
+        WindowEvent winClosingEvent = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosingEvent);
+    }
+    
     private void foodTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_foodTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_foodTextFieldActionPerformed
 
-    private void jCheckBoxMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem1ActionPerformed
+    private void cartMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cartMenuItemActionPerformed
+        // TODO add your handling code here:
         new CustomerCart().setVisible(true);
-    }//GEN-LAST:event_jCheckBoxMenuItem1ActionPerformed
+    }//GEN-LAST:event_cartMenuItemActionPerformed
 
-    private void jCheckBoxMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem2ActionPerformed
+    private void logoutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutMenuItemActionPerformed
+        // TODO add your handling code here:
+        close();
         new Menu().setVisible(true);
-    }//GEN-LAST:event_jCheckBoxMenuItem2ActionPerformed
+    }//GEN-LAST:event_logoutMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -220,15 +229,15 @@ public class CustomerMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
+    private javax.swing.JMenuItem cartMenuItem;
     private javax.swing.JLabel foodLabel;
     private javax.swing.JTextField foodTextField;
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JMenuItem logoutMenuItem;
     private javax.swing.JLabel qtyLabel;
     private javax.swing.JSpinner qtySpinner;
     private javax.swing.JButton resetButton;

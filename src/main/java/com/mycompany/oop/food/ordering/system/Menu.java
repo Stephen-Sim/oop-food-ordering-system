@@ -5,6 +5,8 @@
 package com.mycompany.oop.food.ordering.system;
 
 import java.awt.Color;
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -50,7 +52,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenu1.setText("jMenu1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("FOOD ORDERING SYSTEM");
         setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -86,17 +88,17 @@ public class Menu extends javax.swing.JFrame {
                 signinButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(signinButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, -1, -1));
+        getContentPane().add(signinButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, -1, 60));
 
         resetButton.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        resetButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Reset.png"))); // NOI18N
+        resetButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Reset (Main).png"))); // NOI18N
         resetButton.setText("Reset");
         resetButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 resetButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(resetButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 130, 50));
+        getContentPane().add(resetButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, 130, 60));
 
         backgroundLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo.png"))); // NOI18N
         getContentPane().add(backgroundLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, -1));
@@ -192,9 +194,12 @@ public class Menu extends javax.swing.JFrame {
                     if (username.contains("admin"))
                     {
                         new AdminPanel().setVisible(true);
+                        close();
                     }
-                    else {
+                    else 
+                    {
                         new CustomerMenu().setVisible(true);
+                        close();
                     }
                 }
                 else
@@ -216,6 +221,12 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         clearForm();
     }//GEN-LAST:event_resetButtonActionPerformed
+    
+    public void close()
+    {
+        WindowEvent winClosingEvent = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosingEvent);
+    }
     
     public void clearForm()
     {
