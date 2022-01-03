@@ -4,6 +4,9 @@
  */
 package com.mycompany.oop.food.ordering.system;
 
+import java.awt.Color;
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -33,6 +36,7 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenu1 = new javax.swing.JMenu();
         titleLabel = new javax.swing.JLabel();
         usernameLabel = new javax.swing.JLabel();
         usernameTextField = new javax.swing.JTextField();
@@ -46,7 +50,9 @@ public class Menu extends javax.swing.JFrame {
         registerMenuItem = new javax.swing.JMenuItem();
         exitMenuItem = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jMenu1.setText("jMenu1");
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("FOOD ORDERING SYSTEM");
         setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -82,17 +88,17 @@ public class Menu extends javax.swing.JFrame {
                 signinButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(signinButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, -1, -1));
+        getContentPane().add(signinButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, -1, 60));
 
         resetButton.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        resetButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Reset.png"))); // NOI18N
+        resetButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Reset (Main).png"))); // NOI18N
         resetButton.setText("Reset");
         resetButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 resetButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(resetButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 130, 50));
+        getContentPane().add(resetButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, 130, 60));
 
         backgroundLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo.png"))); // NOI18N
         getContentPane().add(backgroundLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, -1));
@@ -129,8 +135,12 @@ public class Menu extends javax.swing.JFrame {
 
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, "Thank you for using our system!");
-        System.exit(0);
+        int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Yes", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (result == JOptionPane.YES_NO_OPTION)
+        {
+            JOptionPane.showMessageDialog(null, "Thank you for using our system!");
+            System.exit(0);
+        }  
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
     private void usernameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameTextFieldActionPerformed
@@ -143,6 +153,22 @@ public class Menu extends javax.swing.JFrame {
         if (usernameTextField.getText().isEmpty() || passwordTextField.getText().isEmpty())
         {
             JOptionPane.showMessageDialog(null, "Please complete the form.");
+            if (usernameTextField.getText().isEmpty())
+            {
+                usernameTextField.setBackground(new java.awt.Color(255, 128, 128));
+            }
+            else
+            {
+                usernameTextField.setBackground(new java.awt.Color(128, 255, 128));
+            }
+            if (passwordTextField.getText().isEmpty())
+            {
+                passwordTextField.setBackground(new java.awt.Color(255, 128, 128));
+            }
+            else
+            {
+                passwordTextField.setBackground(new java.awt.Color(128, 255, 128));
+            }
         }
         else
         {
@@ -157,16 +183,31 @@ public class Menu extends javax.swing.JFrame {
                 Connection conn = DriverManager.getConnection(host+dbname, user, pass);
                 String sql = "SELECT * FROM users WHERE username = ? AND PASSWORD = ?";
                 PreparedStatement ps = conn.prepareStatement(sql);
-                 ps.setString(1, username);
-                 ps.setString(2, password);
+                ps.setString(1, username);
+                ps.setString(2, password);
                 ResultSet rs = ps.executeQuery();
                 if (rs.next())
                 {
                     JOptionPane.showMessageDialog(null, "Login Successfully. Welcome back!");
+                    clearForm();
+                    hideForm();
+                    if (username.contains("admin"))
+                    {
+                        new AdminPanel().setVisible(true);
+                        close();
+                    }
+                    else 
+                    {
+                        new CustomerMenu().setVisible(true);
+                        close();
+                    }
                 }
                 else
                 {
                     JOptionPane.showMessageDialog(null, "Login failed. Possible incorrect credentials or record not found.");
+                    clearForm();
+                    usernameTextField.setBackground(Color.white);
+                    passwordTextField.setBackground(Color.white);
                 }
             }
             catch (SQLException err)
@@ -178,10 +219,43 @@ public class Menu extends javax.swing.JFrame {
 
     private void resetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetButtonActionPerformed
         // TODO add your handling code here:
+        clearForm();
+    }//GEN-LAST:event_resetButtonActionPerformed
+    
+    public void close()
+    {
+        WindowEvent winClosingEvent = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosingEvent);
+    }
+    
+    public void clearForm()
+    {
         usernameTextField.setText("");
         passwordTextField.setText("");
-    }//GEN-LAST:event_resetButtonActionPerformed
-
+    }
+    
+    public void hideForm()
+    {
+        titleLabel.setEnabled(false);
+        usernameLabel.setEnabled(false);
+        usernameTextField.setEnabled(false);
+        passwordLabel.setEnabled(false);
+        passwordTextField.setEnabled(false);
+        signinButton.setEnabled(false);
+        resetButton.setEnabled(false);
+    }
+    
+    public void showForm()
+    {
+        titleLabel.setEnabled(true);
+        usernameLabel.setEnabled(true);
+        usernameTextField.setEnabled(true);
+        passwordLabel.setEnabled(true);
+        passwordTextField.setEnabled(true);
+        signinButton.setEnabled(true);
+        resetButton.setEnabled(true);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -216,11 +290,12 @@ public class Menu extends javax.swing.JFrame {
             }
         });
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel backgroundLabel;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JPasswordField passwordTextField;
