@@ -42,6 +42,7 @@ public class FoodController extends Controller{
             while(rs.next())
             {
                 Food food = new Food();
+                food.setFoodId(rs.getInt("id"));
                 food.setFoodName(rs.getString("name"));
                 food.setFoodPrice(rs.getFloat("price"));
                 food.setFoodType(rs.getString("food_type"));
@@ -55,4 +56,23 @@ public class FoodController extends Controller{
         
         return foodList;
     }
+    
+    public void destroy(int id) {
+       ArrayList <Food> foodList = new ArrayList();
+        try
+        {
+            FoodController controller = new FoodController();
+            controller.connectToDatabase();
+            String sql = "DELETE FROM foods where id = ?";
+           
+            PreparedStatement ps = this.conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null, "Food Successfully Deleted");
+        }catch (SQLException err){
+            JOptionPane.showMessageDialog(null, err.getMessage());
+        }
+    }
+
 }

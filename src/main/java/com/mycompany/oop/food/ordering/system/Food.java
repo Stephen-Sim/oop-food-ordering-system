@@ -11,11 +11,21 @@ import java.util.ArrayList;
  * @author USER
  */
 public class Food {
+    private int foodId;
     private String foodName;
     private String foodType;
     private float foodPrice;
     private int foodQuantity;
     private ArrayList<Food> foodList;
+    
+    
+    public int getFoodId() {
+        return foodId;
+    }
+
+    public void setFoodId(int foodId) {
+        this.foodId = foodId;
+    }
     
     public String getFoodName() {
         return foodName;
