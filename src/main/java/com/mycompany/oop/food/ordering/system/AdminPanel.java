@@ -124,6 +124,11 @@ public class AdminPanel extends javax.swing.JFrame {
 
         updateButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Edit.png"))); // NOI18N
         updateButton.setText("UPDATE");
+        updateButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                updateButtonMouseClicked(evt);
+            }
+        });
         updateButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updateButtonActionPerformed(evt);
@@ -132,6 +137,11 @@ public class AdminPanel extends javax.swing.JFrame {
 
         saveButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Confirm.png"))); // NOI18N
         saveButton.setText("SAVE");
+        saveButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                saveButtonMouseClicked(evt);
+            }
+        });
         saveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveButtonActionPerformed(evt);
@@ -299,6 +309,44 @@ public class AdminPanel extends javax.swing.JFrame {
         clearForm();
         loadTable();
     }//GEN-LAST:event_deleteButtonMouseClicked
+
+    private void saveButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveButtonMouseClicked
+        // TODO add your handling code here:
+        if(foodName.getText().isEmpty() || foodPrice.getText().isEmpty())
+            JOptionPane.showMessageDialog(null, "All Feild are Required!!!"); 
+        else
+        {
+            int food_id = 0;
+            String food_name = foodName.getText().toString().trim();
+            String food_type = foodType.getSelectedItem().toString();
+            float food_price = Float.parseFloat(foodPrice.getText());
+            int food_quantity = (Integer) foodQuantity.getValue();
+            
+            controller.create(new Food(food_id, food_name, food_type, food_price, food_quantity));
+        }
+        
+        clearForm();
+        loadTable();
+    }//GEN-LAST:event_saveButtonMouseClicked
+
+    private void updateButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateButtonMouseClicked
+        // TODO add your handling code here:
+        if(foodId.getText().equals("NULL") || foodName.getText().isEmpty() || foodPrice.getText().isEmpty())
+            JOptionPane.showMessageDialog(null, "All Feild are Required!!!"); 
+        else
+        {
+            int food_id = Integer.parseInt(foodId.getText());
+            String food_name = foodName.getText().toString().trim();
+            String food_type = foodType.getSelectedItem().toString();
+            float food_price = Float.parseFloat(foodPrice.getText());
+            int food_quantity = (Integer) foodQuantity.getValue();
+            
+            controller.update(new Food(food_id, food_name, food_type, food_price, food_quantity));
+        }
+        
+        clearForm();
+        loadTable();
+    }//GEN-LAST:event_updateButtonMouseClicked
     
     public void clearForm(){
         foodId.setText("NULL");
