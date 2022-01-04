@@ -42,6 +42,7 @@ public class FoodController extends Controller{
             while(rs.next())
             {
                 Food food = new Food();
+                food.setFoodId(rs.getInt("id"));
                 food.setFoodName(rs.getString("name"));
                 food.setFoodPrice(rs.getFloat("price"));
                 food.setFoodType(rs.getString("food_type"));
@@ -54,5 +55,65 @@ public class FoodController extends Controller{
         }
         
         return foodList;
+    }
+    
+    public void create(Food food) {
+        try
+        {
+            FoodController controller = new FoodController();
+            controller.connectToDatabase();
+            String sql = "INSERT INTO foods (name, food_type, price, stock) VALUES(?, ?, ?, ?)";
+           
+            PreparedStatement ps = this.conn.prepareStatement(sql);
+            
+            ps.setString(1, food.getFoodName());
+            ps.setString(2, food.getFoodType());
+            ps.setFloat(3, food.getFoodPrice());
+            ps.setInt(4, food.getFoodQuantity());
+            ps.execute();
+            
+            JOptionPane.showMessageDialog(null, "Food Successfully Saved");
+        }catch (SQLException err){
+            JOptionPane.showMessageDialog(null, err.getMessage());
+        }
+    }
+    
+    public void update(Food food) {
+        try
+        {
+            FoodController controller = new FoodController();
+            controller.connectToDatabase();
+            String sql = "UPDATE foods SET name = ?, food_type = ?, price = ?, stock = ? WHERE id = ?";
+           
+            PreparedStatement ps = this.conn.prepareStatement(sql);
+            
+            ps.setString(1, food.getFoodName());
+            ps.setString(2, food.getFoodType());
+            ps.setFloat(3, food.getFoodPrice());
+            ps.setInt(4, food.getFoodQuantity());
+            ps.setInt(5, food.getFoodId());
+            ps.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null, "Food Successfully Updated");
+        }catch (SQLException err){
+            JOptionPane.showMessageDialog(null, err.getMessage());
+        }
+    }
+    
+    public void destroy(int id) {
+        try
+        {
+            FoodController controller = new FoodController();
+            controller.connectToDatabase();
+            String sql = "DELETE FROM foods WHERE id = ?";
+           
+            PreparedStatement ps = this.conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null, "Food Successfully Deleted");
+        }catch (SQLException err){
+            JOptionPane.showMessageDialog(null, err.getMessage());
+        }
     }
 }
