@@ -4,6 +4,8 @@
  */
 package com.mycompany.oop.food.ordering.system;
 
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
 import static java.lang.System.err;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -59,7 +61,8 @@ public class AdminPanel extends javax.swing.JFrame {
         foodId = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        reportMenuItem = new javax.swing.JMenuItem();
+        logOutMenuItem = new javax.swing.JMenuItem();
 
         jTextField3.setText("jTextField3");
 
@@ -102,7 +105,7 @@ public class AdminPanel extends javax.swing.JFrame {
 
             },
             new String [] {
-                "id", "#", "Food Name", "Food Type", "Food Price", "Stock Quntity"
+                "id", "#", "Food Name", "Food Type", "Food Price", "Stock Quantity"
             }
         ));
         foodTable.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -171,11 +174,25 @@ public class AdminPanel extends javax.swing.JFrame {
 
         foodId.setText("NULL");
 
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
+        jMenu1.setText("Admin");
 
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
+        reportMenuItem.setText("Report");
+        reportMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reportMenuItemActionPerformed(evt);
+            }
+        });
+        jMenu1.add(reportMenuItem);
+
+        logOutMenuItem.setText("Log Out");
+        logOutMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logOutMenuItemActionPerformed(evt);
+            }
+        });
+        jMenu1.add(logOutMenuItem);
+
+        jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
 
@@ -309,17 +326,28 @@ public class AdminPanel extends javax.swing.JFrame {
 
     private void saveButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveButtonMouseClicked
         // TODO add your handling code here:
-        if(foodName.getText().isEmpty() || foodPrice.getText().isEmpty())
-            JOptionPane.showMessageDialog(null, "All Feild are Required!!!"); 
-        else
-        {
-            int food_id = 0;
-            String food_name = foodName.getText().toString().trim();
-            String food_type = foodType.getSelectedItem().toString();
-            float food_price = Float.parseFloat(foodPrice.getText());
-            int food_quantity = (Integer) foodQuantity.getValue();
-            
-            controller.create(new Food(food_id, food_name, food_type, food_price, food_quantity));
+        try{
+            if(foodName.getText().isEmpty() || foodPrice.getText().isEmpty())
+            {
+                JOptionPane.showMessageDialog(null, "All Feild are Required !!!");
+            }
+            else if(Float.parseFloat(foodPrice.getText()) <= 0 && (Integer) foodQuantity.getValue() < 0)
+            {
+                JOptionPane.showMessageDialog(null, "Invalid Input !!!");
+            }
+            else
+            {
+                int food_id = 0;
+                String food_name = foodName.getText().toString().trim();
+                String food_type = foodType.getSelectedItem().toString();
+                float food_price = Float.parseFloat(foodPrice.getText());
+                int food_quantity = (Integer) foodQuantity.getValue();
+
+                controller.create(new Food(food_id, food_name, food_type, food_price, food_quantity));
+            }
+        }
+        catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "Invalid Input !!!");
         }
         
         clearForm();
@@ -328,22 +356,46 @@ public class AdminPanel extends javax.swing.JFrame {
 
     private void updateButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateButtonMouseClicked
         // TODO add your handling code here:
-        if(foodId.getText().equals("NULL") || foodName.getText().isEmpty() || foodPrice.getText().isEmpty())
-            JOptionPane.showMessageDialog(null, "All Feild are Required!!!"); 
-        else
-        {
-            int food_id = Integer.parseInt(foodId.getText());
-            String food_name = foodName.getText().toString().trim();
-            String food_type = foodType.getSelectedItem().toString();
-            float food_price = Float.parseFloat(foodPrice.getText());
-            int food_quantity = (Integer) foodQuantity.getValue();
-            
-            controller.update(new Food(food_id, food_name, food_type, food_price, food_quantity));
+
+        try{
+            if(foodId.getText().equals("NULL") || foodName.getText().isEmpty() || foodPrice.getText().isEmpty())
+            {
+                JOptionPane.showMessageDialog(null, "All Feild are Required!!!"); 
+            }
+            else if(Float.parseFloat(foodPrice.getText()) <= 0 && (Integer) foodQuantity.getValue() < 0)
+            {
+                JOptionPane.showMessageDialog(null, "Invalid Input !!!");
+            }
+            else
+            {
+                int food_id = Integer.parseInt(foodId.getText());
+                String food_name = foodName.getText().toString().trim();
+                String food_type = foodType.getSelectedItem().toString();
+                float food_price = Float.parseFloat(foodPrice.getText());
+                int food_quantity = (Integer) foodQuantity.getValue();
+
+                controller.update(new Food(food_id, food_name, food_type, food_price, food_quantity));
+            }
+        }
+        catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "Invalid Input !!!");
         }
         
         clearForm();
         loadTable();
     }//GEN-LAST:event_updateButtonMouseClicked
+
+    private void logOutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutMenuItemActionPerformed
+        // TODO add your handling code here:
+        close();
+        new Menu().setVisible(true);
+    }//GEN-LAST:event_logOutMenuItemActionPerformed
+
+    private void reportMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportMenuItemActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        new AdminViewOrderHisotry().setVisible(true);
+    }//GEN-LAST:event_reportMenuItemActionPerformed
     
     public void clearForm(){
         foodId.setText("NULL");
@@ -411,6 +463,12 @@ public class AdminPanel extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void close()
+    {
+        WindowEvent winClosingEvent = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosingEvent);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton deleteButton;
@@ -426,10 +484,11 @@ public class AdminPanel extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JMenuItem logOutMenuItem;
+    private javax.swing.JMenuItem reportMenuItem;
     private javax.swing.JButton resetButton;
     private javax.swing.JButton saveButton;
     private javax.swing.JButton updateButton;

@@ -70,7 +70,7 @@ public class Registration extends javax.swing.JFrame {
                 signupButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(signupButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, -1, 60));
+        getContentPane().add(signupButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, -1, 60));
 
         resetButton.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         resetButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Reset (Main).png"))); // NOI18N
@@ -80,7 +80,7 @@ public class Registration extends javax.swing.JFrame {
                 resetButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(resetButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 200, -1, 60));
+        getContentPane().add(resetButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, -1, 60));
         getContentPane().add(backgroundLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, -1));
 
         backgroundLabell.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo.png"))); // NOI18N
