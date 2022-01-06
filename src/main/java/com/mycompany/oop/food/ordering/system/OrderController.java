@@ -25,14 +25,14 @@ public class OrderController extends Controller{
         }
     }
     
-    public ArrayList<Order> fetchAll()
+    public ArrayList<Order> fetchAllSuccessOrder()
     {
         ArrayList <Order> orderList = new ArrayList();
         try
         {
             OrderController controller = new OrderController();
             controller.connectToDatabase();
-            String sql = "SELECT orders.*, users.username FROM orders Left JOIN users ON orders.customer_id = users.id;";
+            String sql = "SELECT orders.*, users.username FROM orders Left JOIN users ON orders.customer_id = users.id WHERE orders.status = 1;";
            
             PreparedStatement ps = this.conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();

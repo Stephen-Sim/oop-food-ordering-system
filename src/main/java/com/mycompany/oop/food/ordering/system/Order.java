@@ -4,8 +4,6 @@
  */
 package com.mycompany.oop.food.ordering.system;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author USER
@@ -14,15 +12,17 @@ public class Order {
     private int orderId;
     private String orderTime;
     private float orderTotalPrice;
+    private int orderStatus;
     private String customerName;
     
     public Order() {
     }
 
-    public Order(int orderId, String orderTime, float orderTotalPrice, String customerName) {
+    public Order(int orderId, String orderTime, float orderTotalPrice, int orderStatus, String customerName) {
         this.orderId = orderId;
         this.orderTime = orderTime;
         this.orderTotalPrice = orderTotalPrice;
+        this.orderStatus = orderStatus;
         this.customerName = customerName;
     }
 
@@ -49,6 +49,16 @@ public class Order {
     public void setOrderTotalPrice(float orderTotalPrice) {
         this.orderTotalPrice = orderTotalPrice;
     }
+
+    public int getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(int orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+    
+    
 
     public String getCustomerName() {
         return customerName;

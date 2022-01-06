@@ -223,7 +223,7 @@ public class AdminViewOrderHisotry extends javax.swing.JFrame {
         
         DecimalFormat df = new DecimalFormat("0.00");
        
-        orderList = controller.fetchAll();
+        orderList = controller.fetchAllSuccessOrder();
         
         float sum = 0;
         
