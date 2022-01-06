@@ -59,11 +59,11 @@ public class Menu extends javax.swing.JFrame {
 
         titleLabel.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         titleLabel.setText("LOGIN");
-        getContentPane().add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, -1));
+        getContentPane().add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, -1, -1));
 
         usernameLabel.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         usernameLabel.setText("Username");
-        getContentPane().add(usernameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, -1, -1));
+        getContentPane().add(usernameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, -1, -1));
 
         usernameTextField.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         usernameTextField.addActionListener(new java.awt.event.ActionListener() {
@@ -71,14 +71,14 @@ public class Menu extends javax.swing.JFrame {
                 usernameTextFieldActionPerformed(evt);
             }
         });
-        getContentPane().add(usernameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 200, -1));
+        getContentPane().add(usernameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 200, -1));
 
         passwordLabel.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         passwordLabel.setText("Password");
-        getContentPane().add(passwordLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, -1, -1));
+        getContentPane().add(passwordLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, -1, -1));
 
         passwordTextField.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        getContentPane().add(passwordTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 200, -1));
+        getContentPane().add(passwordTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 200, -1));
 
         signinButton.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         signinButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Login.png"))); // NOI18N
@@ -88,7 +88,7 @@ public class Menu extends javax.swing.JFrame {
                 signinButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(signinButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, -1, 60));
+        getContentPane().add(signinButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, 60));
 
         resetButton.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         resetButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Reset (Main).png"))); // NOI18N
@@ -98,7 +98,7 @@ public class Menu extends javax.swing.JFrame {
                 resetButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(resetButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, 130, 60));
+        getContentPane().add(resetButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, 130, 60));
 
         backgroundLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo.png"))); // NOI18N
         getContentPane().add(backgroundLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, -1));

@@ -225,7 +225,7 @@
                 <Column editable="true" title="Food Name" type="java.lang.Object"/>
                 <Column editable="true" title="Food Type" type="java.lang.Object"/>
                 <Column editable="true" title="Food Price" type="java.lang.Object"/>
-                <Column editable="true" title="Stock Quntity" type="java.lang.Object"/>
+                <Column editable="true" title="Stock Quantity" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

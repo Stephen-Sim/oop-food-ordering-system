@@ -105,7 +105,7 @@ public class AdminPanel extends javax.swing.JFrame {
 
             },
             new String [] {
-                "id", "#", "Food Name", "Food Type", "Food Price", "Stock Quntity"
+                "id", "#", "Food Name", "Food Type", "Food Price", "Stock Quantity"
             }
         ));
         foodTable.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -365,6 +365,7 @@ public class AdminPanel extends javax.swing.JFrame {
     private void logOutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutMenuItemActionPerformed
         // TODO add your handling code here:
         close();
+        new Menu().setVisible(true);
     }//GEN-LAST:event_logOutMenuItemActionPerformed
 
     private void reportMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportMenuItemActionPerformed
