@@ -174,7 +174,7 @@ public class AdminPanel extends javax.swing.JFrame {
 
         foodId.setText("NULL");
 
-        jMenu1.setText("File");
+        jMenu1.setText("Admin");
 
         reportMenuItem.setText("Report");
         reportMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -370,6 +370,8 @@ public class AdminPanel extends javax.swing.JFrame {
 
     private void reportMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportMenuItemActionPerformed
         // TODO add your handling code here:
+        this.dispose();
+        new AdminViewOrderHisotry().setVisible(true);
     }//GEN-LAST:event_reportMenuItemActionPerformed
     
     public void clearForm(){
