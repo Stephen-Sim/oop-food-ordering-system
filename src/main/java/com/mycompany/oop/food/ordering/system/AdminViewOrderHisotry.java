@@ -8,6 +8,7 @@ import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -58,6 +59,11 @@ public class AdminViewOrderHisotry extends javax.swing.JFrame {
                 "OrderId", "#", "Customer Name", "Order Date", "Total Paid"
             }
         ));
+        orderTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                orderTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(orderTable);
         if (orderTable.getColumnModel().getColumnCount() > 0) {
             orderTable.getColumnModel().getColumn(0).setMinWidth(0);
@@ -156,6 +162,12 @@ public class AdminViewOrderHisotry extends javax.swing.JFrame {
         new Menu().setVisible(true);
     }//GEN-LAST:event_LogOutMenuActionPerformed
 
+    private void orderTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_orderTableMouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel tableContent = (DefaultTableModel) orderTable.getModel();
+        JOptionPane.showMessageDialog(null, controller.getFoodOrderByOrderId(Integer.parseInt(tableContent.getValueAt(orderTable.getSelectedRow(), 0).toString()))); 
+    }//GEN-LAST:event_orderTableMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -217,7 +229,7 @@ public class AdminViewOrderHisotry extends javax.swing.JFrame {
         
         DefaultTableModel tableContent = (DefaultTableModel) orderTable.getModel();
         
-        Object rowData[] = new Object[6];
+        Object rowData[] = new Object[5];
         
         for(int i = 0; i < orderList.size(); i++)
         {

@@ -30,7 +30,7 @@ public class OrderController extends Controller{
         ArrayList <Order> orderList = new ArrayList();
         try
         {
-            FoodController controller = new FoodController();
+            OrderController controller = new OrderController();
             controller.connectToDatabase();
             String sql = "SELECT orders.*, users.username FROM orders Left JOIN users ON orders.customer_id = users.id;";
            
@@ -52,5 +52,34 @@ public class OrderController extends Controller{
         }
         
         return orderList;
+    }
+
+    public String getFoodOrderByOrderId(int orderId) {
+        String info = "";
+        int i = 0;
+        
+        System.out.println(orderId);
+        try
+        {
+            OrderController controller = new OrderController();
+            controller.connectToDatabase();
+            String sql = "SELECT foods.name, food_order.quantity, food_order.total_price FROM orders LEFT JOIN food_order ON orders.id = food_order.order_id LEFT JOIN foods ON foods.id = food_order.food_id WHERE orders.id = ?";
+           
+            PreparedStatement ps = this.conn.prepareStatement(sql);
+            ps.setInt(1, orderId);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next())
+            {
+                i++;
+                info += (i + ". " + rs.getString("name")); 
+                info += ("\n    Quantity: " + rs.getString("quantity"));
+                info += ("\n    Total Price(RM): " + rs.getString("total_price") + "\n\n"); 
+            }
+        }catch (SQLException err){
+            JOptionPane.showMessageDialog(null, err.getMessage());
+        }
+        
+        return info;
     }
 }
