@@ -4,6 +4,8 @@
  */
 package com.mycompany.oop.food.ordering.system;
 
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -43,17 +45,15 @@ public class CustomerCart extends javax.swing.JFrame {
         editButton = new javax.swing.JButton();
         confirmButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        menuMenuItem = new javax.swing.JCheckBoxMenuItem();
-        logoutMenuItem = new javax.swing.JCheckBoxMenuItem();
+        MenuItem = new javax.swing.JMenuItem();
+        logOutItemMenu = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("CART");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
 
@@ -70,13 +70,13 @@ public class CustomerCart extends javax.swing.JFrame {
             cartTable.getColumnModel().getColumn(0).setMinWidth(0);
             cartTable.getColumnModel().getColumn(0).setPreferredWidth(0);
             cartTable.getColumnModel().getColumn(0).setMaxWidth(0);
-            cartTable.getColumnModel().getColumn(1).setPreferredWidth(10);
+            cartTable.getColumnModel().getColumn(1).setMinWidth(30);
+            cartTable.getColumnModel().getColumn(1).setMaxWidth(30);
         }
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 54, -1, 311));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Food No:");
         jLabel2.setMaximumSize(new java.awt.Dimension(78, 20));
         jLabel2.setMinimumSize(new java.awt.Dimension(78, 20));
@@ -91,7 +91,6 @@ public class CustomerCart extends javax.swing.JFrame {
         getContentPane().add(foodNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(554, 66, 180, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Quantity:");
         jLabel3.setMaximumSize(new java.awt.Dimension(78, 20));
         jLabel3.setMinimumSize(new java.awt.Dimension(78, 20));
@@ -121,28 +120,23 @@ public class CustomerCart extends javax.swing.JFrame {
         });
         getContentPane().add(deleteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 160, 100, 40));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Menu.jpg"))); // NOI18N
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-
         jMenu1.setText("File");
 
-        menuMenuItem.setSelected(true);
-        menuMenuItem.setText("Menu");
-        menuMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        MenuItem.setText("Menu");
+        MenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuMenuItemActionPerformed(evt);
+                MenuItemActionPerformed(evt);
             }
         });
-        jMenu1.add(menuMenuItem);
+        jMenu1.add(MenuItem);
 
-        logoutMenuItem.setSelected(true);
-        logoutMenuItem.setText("Log Out");
-        logoutMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        logOutItemMenu.setText("Log Out");
+        logOutItemMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logoutMenuItemActionPerformed(evt);
+                logOutItemMenuActionPerformed(evt);
             }
         });
-        jMenu1.add(logoutMenuItem);
+        jMenu1.add(logOutItemMenu);
 
         jMenuBar1.add(jMenu1);
 
@@ -150,18 +144,6 @@ public class CustomerCart extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void logoutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutMenuItemActionPerformed
-        new Menu().setVisible(true);
-    }//GEN-LAST:event_logoutMenuItemActionPerformed
-
-    private void foodNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_foodNoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_foodNoActionPerformed
-
-    private void menuMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuMenuItemActionPerformed
-        new CustomerMenu().setVisible(true);
-    }//GEN-LAST:event_menuMenuItemActionPerformed
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         // TODO add your handling code here:
@@ -194,6 +176,22 @@ public class CustomerCart extends javax.swing.JFrame {
         clearForm();
         loadTable();
     }//GEN-LAST:event_deleteButtonActionPerformed
+
+    private void foodNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_foodNoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_foodNoActionPerformed
+
+    private void MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        new CustomerMenu().setVisible(true);
+    }//GEN-LAST:event_MenuItemActionPerformed
+
+    private void logOutItemMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutItemMenuActionPerformed
+        // TODO add your handling code here:
+        close();
+        new Menu().setVisible(true);
+    }//GEN-LAST:event_logOutItemMenuActionPerformed
 
     private void foodTableMouseClicked(java.awt.event.MouseEvent evt) {                                       
         // TODO add your handling code here:
@@ -266,8 +264,15 @@ public class CustomerCart extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void close()
+    {
+        WindowEvent winClosingEvent = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosingEvent);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem MenuItem;
     private javax.swing.JTable cartTable;
     private javax.swing.JButton confirmButton;
     private javax.swing.JButton deleteButton;
@@ -277,11 +282,9 @@ public class CustomerCart extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JCheckBoxMenuItem logoutMenuItem;
-    private javax.swing.JCheckBoxMenuItem menuMenuItem;
+    private javax.swing.JMenuItem logOutItemMenu;
     // End of variables declaration//GEN-END:variables
 }

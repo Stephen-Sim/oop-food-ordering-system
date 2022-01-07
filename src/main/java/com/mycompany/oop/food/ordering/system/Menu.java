@@ -181,7 +181,7 @@ public class Menu extends javax.swing.JFrame {
                 String user = "root";
                 String pass = "";
                 Connection conn = DriverManager.getConnection(host+dbname, user, pass);
-                String sql = "SELECT * FROM users WHERE username = ? AND PASSWORD = ?";
+                String sql = "SELECT * FROM users WHERE username = ? AND PASSWORD = ? Limit 1";
                 PreparedStatement ps = conn.prepareStatement(sql);
                 ps.setString(1, username);
                 ps.setString(2, password);
@@ -198,7 +198,7 @@ public class Menu extends javax.swing.JFrame {
                     }
                     else 
                     {
-                        new CustomerMenu().setVisible(true);
+                        new CustomerMenu(rs.getInt("id")).setVisible(true);
                         close();
                     }
                 }

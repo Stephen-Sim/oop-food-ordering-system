@@ -199,4 +199,33 @@ public class FoodController extends Controller{
         
         return foodList;
     }
+
+    public ArrayList<Food> fetchAllWhereIsNotZero() {
+        ArrayList <Food> foodList = new ArrayList();
+        try
+        {
+            FoodController controller = new FoodController();
+            controller.connectToDatabase();
+            String sql = "SELECT * FROM foods where stock > 0";
+           
+            PreparedStatement ps = this.conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next())
+            {
+                Food food = new Food();
+                food.setFoodId(rs.getInt("id"));
+                food.setFoodName(rs.getString("name"));
+                food.setFoodPrice(rs.getFloat("price"));
+                food.setFoodType(rs.getString("food_type"));
+                food.setFoodQuantity(rs.getInt("stock"));
+                
+                foodList.add(food);
+            }
+        }catch (SQLException err){
+            JOptionPane.showMessageDialog(null, err.getMessage());
+        }
+        
+        return foodList;
+    }
 }
