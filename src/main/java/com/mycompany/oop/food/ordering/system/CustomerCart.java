@@ -4,6 +4,9 @@
  */
 package com.mycompany.oop.food.ordering.system;
 
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
+
 /**
  *
  * @author Admin
@@ -174,7 +177,12 @@ public class CustomerCart extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    public void close()
+    {
+        WindowEvent winClosingEvent = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosingEvent);
+    }
+    
     private void jCheckBoxMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem2ActionPerformed
         new Menu().setVisible(true);
     }//GEN-LAST:event_jCheckBoxMenuItem2ActionPerformed
@@ -184,6 +192,7 @@ public class CustomerCart extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jCheckBoxMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem1ActionPerformed
+        close();
         new CustomerMenu().setVisible(true);
     }//GEN-LAST:event_jCheckBoxMenuItem1ActionPerformed
 

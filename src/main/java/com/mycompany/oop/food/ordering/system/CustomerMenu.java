@@ -183,6 +183,7 @@ public class CustomerMenu extends javax.swing.JFrame {
 
     private void cartMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cartMenuItemActionPerformed
         // TODO add your handling code here:
+        close();
         new CustomerCart().setVisible(true);
     }//GEN-LAST:event_cartMenuItemActionPerformed
 
