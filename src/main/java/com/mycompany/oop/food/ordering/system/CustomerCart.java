@@ -166,7 +166,7 @@ public class CustomerCart extends javax.swing.JFrame {
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         // TODO add your handling code here:
         if(foodNo.getText().equals("NULL"))
-            JOptionPane.showMessageDialog(null, "All Feild are Required!!!"); 
+            JOptionPane.showMessageDialog(null, "All Field are Required!!!"); 
         else
         {
             int food_id = Integer.parseInt(foodNo.getText());
@@ -185,7 +185,7 @@ public class CustomerCart extends javax.swing.JFrame {
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         // TODO add your handling code here:
         if(foodNo.getText().equals("NULL"))
-            JOptionPane.showMessageDialog(null, "All Feild are Required!!!"); 
+            JOptionPane.showMessageDialog(null, "All FIeld are Required!!!"); 
         else
         {
             controller.deleteCart(Integer.parseInt(foodNo.getText()));
