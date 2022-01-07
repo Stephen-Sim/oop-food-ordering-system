@@ -181,7 +181,7 @@ public class CustomerCart extends javax.swing.JFrame {
 
     private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
         // TODO add your handling code here:
-        controller.confirmOrder(this.userId);
+        controller.confirmOrder(this.userId, Float.parseFloat(totalAmount.getText()));
 
         loadTable();
     }//GEN-LAST:event_confirmButtonActionPerformed
@@ -209,6 +209,8 @@ public class CustomerCart extends javax.swing.JFrame {
             rowData[4] = orderList.get(i).getOrderQuantity();
             rowData[5] = df.format(orderList.get(i).getOrderTotalPrice());
             tableContent.addRow(rowData);
+            
+            System.out.println(orderList.get(i).getOrderTotalPrice());
             
             sum += orderList.get(i).getOrderTotalPrice();
         }

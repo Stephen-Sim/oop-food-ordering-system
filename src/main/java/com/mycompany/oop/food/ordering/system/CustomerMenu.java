@@ -197,14 +197,22 @@ public class CustomerMenu extends javax.swing.JFrame {
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         // TODO add your handling code here:
-        DecimalFormat df = new DecimalFormat("0.00");
         
-        int food_Id = Integer.parseInt(selectedFoodId.getText());
-        int food_quantity = (Integer) foodQuantity.getValue();
-        String total_price = df.format(Float.parseFloat(selectedFoodPrice.getText()) * food_quantity);
-        ccontroller.addCart(this.userId, food_Id, food_quantity, total_price);
-        clearForm();
-        loadTable();
+        if(selectedFood.getText().equals("NULL") || selectedFoodPrice.getText().equals("NULL"))
+        {
+            JOptionPane.showMessageDialog(null, "Please choose an Item !!!");
+        }
+        else
+        {
+            DecimalFormat df = new DecimalFormat("0.00");
+        
+            int food_Id = Integer.parseInt(selectedFoodId.getText());
+            int food_quantity = (Integer) foodQuantity.getValue();
+            String total_price = df.format(Float.parseFloat(selectedFoodPrice.getText()) * food_quantity);
+            ccontroller.addCart(this.userId, food_Id, food_quantity, total_price);
+            clearForm();
+            loadTable();
+        }
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void cartItemMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cartItemMenuActionPerformed
@@ -260,6 +268,8 @@ public class CustomerMenu extends javax.swing.JFrame {
             tableContent.addRow(rowData);
         }
         
+        selectedFoodId.setText("NULL");
+        selectedFoodPrice.setText("NULL");
     }
     /**
      * @param args the command line arguments

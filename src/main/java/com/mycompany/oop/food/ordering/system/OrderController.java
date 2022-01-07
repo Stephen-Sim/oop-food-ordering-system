@@ -102,7 +102,7 @@ public class OrderController extends Controller{
                 order.setFoodId(rs.getInt("food_id"));
                 order.setOrderId(rs.getInt("order_id"));
                 order.setFoodName(rs.getString("NAME"));
-                order.setOrderTotalPrice(rs.getInt("total_price"));
+                order.setOrderTotalPrice(rs.getFloat("total_price"));
                 order.setOrderQuantity(rs.getInt("quantity"));
                 orderList.add(order);
             }
@@ -141,16 +141,17 @@ public class OrderController extends Controller{
         }
     }
 
-    public void confirmOrder(int userId) {
+    public void confirmOrder(int userId, float totalAmount) {
         try
         {
             FoodController controller = new FoodController();
             controller.connectToDatabase();
             
             // update stock
-            String sql = "UPDATE orders SET status = 1 Where customer_id = ?";
+            String sql = "UPDATE orders SET total_price = ?, transaction_time = SYSDATE(),status = 1 Where customer_id = ? AND status = 0";
             PreparedStatement ps = this.conn.prepareStatement(sql);
-            ps.setInt(1, userId);
+            ps.setFloat(1, totalAmount);
+            ps.setInt(2, userId);
             ps.execute();
 
             JOptionPane.showMessageDialog(null, "Thank You !!!");
