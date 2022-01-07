@@ -112,7 +112,7 @@ public class CustomerController extends Controller {
         {
             CustomerController controller = new CustomerController();
             controller.connectToDatabase();
-            String sql = "SELECT * FROM orders where customer_id = ? limit 1";
+            String sql = "SELECT * FROM orders where customer_id = ?  and status = 0 limit 1";
             PreparedStatement ps = this.conn.prepareStatement(sql);
             ps.setInt(1, userId);
             ResultSet rs = ps.executeQuery();
@@ -133,7 +133,12 @@ public class CustomerController extends Controller {
                 JOptionPane.showMessageDialog(null, "Order Successfully Added to Cart\nTotal Price : " + total_price);
                 
                 // update stock
-                
+                String sql2 = "UPDATE foods f, (SELECT stock FROM foods WHERE id = ? ) fd SET f.stock = fd.stock - ? WHERE f.id = ?";
+                PreparedStatement ps2 = this.conn.prepareStatement(sql2);
+                ps2.setInt(1, food_Id);
+                ps2.setInt(2, food_quantity);
+                ps2.setInt(3, food_Id);
+                ps2.execute();
             }
                 
         }catch (SQLException err){

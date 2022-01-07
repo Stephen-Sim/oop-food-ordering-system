@@ -35,8 +35,8 @@ public class CustomerMenu extends javax.swing.JFrame {
         this.userId = userId;
         loginCus = ccontroller.getCustomerDetailByid(userId);
         initComponents();
-        selectedFoodPrice.setVisible(true);
-        selectedFoodPrice.setVisible(true);
+        selectedFoodId.setVisible(false);
+        selectedFoodPrice.setVisible(false);
         customerUsername.setText(String.valueOf(loginCus.getCustomerUsername()));
         loadTable();
     }
@@ -210,7 +210,7 @@ public class CustomerMenu extends javax.swing.JFrame {
     private void cartItemMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cartItemMenuActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        new CustomerCart().setVisible(true);
+        new CustomerCart(this.userId).setVisible(true);
     }//GEN-LAST:event_cartItemMenuActionPerformed
 
     private void logOutItemMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutItemMenuActionPerformed
