@@ -129,7 +129,11 @@ public class CustomerMenu extends javax.swing.JFrame {
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 16, -1, -1));
 
         customerUsername.setForeground(new java.awt.Color(255, 255, 255));
+<<<<<<< HEAD
         getContentPane().add(customerUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 20, 190, 20));
+=======
+        getContentPane().add(customerUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 20, 130, 20));
+>>>>>>> master
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Menu.jpg"))); // NOI18N
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -184,7 +188,7 @@ public class CustomerMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         Customer customer = new Customer();
         if(foodNo.getText().isEmpty()) 
-            JOptionPane.showMessageDialog(null, "All Feild are Required!!!"); 
+            JOptionPane.showMessageDialog(null, "All Field are Required!!!"); 
         else
         {
             int food_id = Integer.parseInt(foodNo.getText());
