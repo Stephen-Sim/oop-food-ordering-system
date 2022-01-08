@@ -70,7 +70,7 @@ public class AdminPanel extends javax.swing.JFrame {
         jTextField3.setText("jTextField3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Food Ordering System");
+        setTitle("FOOD ORDERING SYSTEM - ADMIN PANEL");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N

@@ -5,6 +5,7 @@
 package com.mycompany.oop.food.ordering.system;
 
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -45,7 +46,7 @@ public class Registration extends javax.swing.JFrame {
         backgroundLabell = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("FOOD ORDERING SYSTEM");
+        setTitle("FOOD ORDERING SYSTEM - REGISTER");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         registerLabel.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -55,11 +56,23 @@ public class Registration extends javax.swing.JFrame {
         usernameLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         usernameLabel.setText("Username");
         getContentPane().add(usernameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 45, -1, -1));
+
+        usernameTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                usernameTextFieldKeyPressed(evt);
+            }
+        });
         getContentPane().add(usernameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 68, 197, -1));
 
         passwordLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         passwordLabel.setText("Password");
         getContentPane().add(passwordLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, -1, -1));
+
+        passwordTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                passwordTextFieldKeyPressed(evt);
+            }
+        });
         getContentPane().add(passwordTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 197, -1));
 
         signupButton.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -97,6 +110,41 @@ public class Registration extends javax.swing.JFrame {
     
     private void signupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupButtonActionPerformed
         // TODO add your handling code here:
+        register();
+        
+    }//GEN-LAST:event_signupButtonActionPerformed
+
+    private void resetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetButtonActionPerformed
+        // TODO add your handling code here:
+        clearForm(); 
+    }//GEN-LAST:event_resetButtonActionPerformed
+
+    private void usernameTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameTextFieldKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER)
+        {
+            register();
+        }
+        if (evt.getKeyCode() == KeyEvent.VK_W)
+        {
+            close();
+        }
+    }//GEN-LAST:event_usernameTextFieldKeyPressed
+
+    private void passwordTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordTextFieldKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER)
+        {
+            register();
+        }
+        if (evt.getKeyCode() == KeyEvent.VK_W)
+        {
+            close();
+        }
+    }//GEN-LAST:event_passwordTextFieldKeyPressed
+    
+    public void register()
+    {
         if (usernameTextField.getText().isEmpty() || passwordTextField.getText().isEmpty())
         {
             JOptionPane.showMessageDialog(null, "Please complete the form.");
@@ -146,14 +194,7 @@ public class Registration extends javax.swing.JFrame {
                  JOptionPane.showMessageDialog(null, err.getMessage());
             }
         }
-        
-    }//GEN-LAST:event_signupButtonActionPerformed
-
-    private void resetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetButtonActionPerformed
-        // TODO add your handling code here:
-        clearForm(); 
-    }//GEN-LAST:event_resetButtonActionPerformed
-
+    }
     /**
      * @param args the command line arguments
      */

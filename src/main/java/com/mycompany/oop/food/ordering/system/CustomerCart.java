@@ -62,6 +62,7 @@ public class CustomerCart extends javax.swing.JFrame {
         logOutItemMenu = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("FOOD ORDERING SYSTEM - CART");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         totalAmount.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N

@@ -6,6 +6,7 @@ package com.mycompany.oop.food.ordering.system;
 
 import java.awt.Color;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -53,7 +54,7 @@ public class Menu extends javax.swing.JFrame {
         jMenu1.setText("jMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("FOOD ORDERING SYSTEM");
+        setTitle("FOOD ORDERING SYSTEM - LOGIN");
         setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -71,6 +72,11 @@ public class Menu extends javax.swing.JFrame {
                 usernameTextFieldActionPerformed(evt);
             }
         });
+        usernameTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                usernameTextFieldKeyPressed(evt);
+            }
+        });
         getContentPane().add(usernameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 200, -1));
 
         passwordLabel.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -78,6 +84,11 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().add(passwordLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, -1, -1));
 
         passwordTextField.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        passwordTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                passwordTextFieldKeyPressed(evt);
+            }
+        });
         getContentPane().add(passwordTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 200, -1));
 
         signinButton.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -105,7 +116,7 @@ public class Menu extends javax.swing.JFrame {
 
         fileMenu.setText("File");
 
-        registerMenuItem.setText("Register");
+        registerMenuItem.setText("Register (ctrl + R)");
         registerMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 registerMenuItemActionPerformed(evt);
@@ -113,7 +124,7 @@ public class Menu extends javax.swing.JFrame {
         });
         fileMenu.add(registerMenuItem);
 
-        exitMenuItem.setText("Exit");
+        exitMenuItem.setText("Exit (ctrl + Q)");
         exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exitMenuItemActionPerformed(evt);
@@ -135,12 +146,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
         // TODO add your handling code here:
-        int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Yes", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        if (result == JOptionPane.YES_NO_OPTION)
-        {
-            JOptionPane.showMessageDialog(null, "Thank you for using our system!");
-            System.exit(0);
-        }  
+        exit(); 
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
     private void usernameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameTextFieldActionPerformed
@@ -150,6 +156,70 @@ public class Menu extends javax.swing.JFrame {
 
     private void signinButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signinButtonActionPerformed
         // TODO add your handling code here:
+        login();
+    }//GEN-LAST:event_signinButtonActionPerformed
+
+    private void resetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetButtonActionPerformed
+        // TODO add your handling code here:
+        clearForm();
+    }//GEN-LAST:event_resetButtonActionPerformed
+
+    private void passwordTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordTextFieldKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER)
+        {
+            login();
+        }
+        if (evt.isControlDown() && evt.getKeyCode() == KeyEvent.VK_Q)
+        {
+            exit();
+        }
+        if (evt.isControlDown() && evt.getKeyCode() == KeyEvent.VK_R)
+        {
+            new Registration().setVisible(true);
+        }
+    }//GEN-LAST:event_passwordTextFieldKeyPressed
+
+    private void usernameTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameTextFieldKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER)
+        {
+            login();
+        }
+        if (evt.isControlDown() && evt.getKeyCode() == KeyEvent.VK_Q)
+        {
+            exit();
+        }
+        if (evt.isControlDown() && evt.getKeyCode() == KeyEvent.VK_R)
+        {
+            new Registration().setVisible(true);
+        }
+    }//GEN-LAST:event_usernameTextFieldKeyPressed
+    
+    public void close()
+    {
+        WindowEvent winClosingEvent = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosingEvent);
+    }
+    
+    public void exit()
+    {
+        int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Yes", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (result == JOptionPane.YES_NO_OPTION)
+        {
+            JOptionPane.showMessageDialog(null, "Thank you for using our system!");
+            System.exit(0);
+        }  
+    }
+    
+    public void clearForm()
+    {
+        usernameTextField.setText("");
+        passwordTextField.setText("");
+    }
+    
+    public void login()
+    {
         if (usernameTextField.getText().isEmpty() || passwordTextField.getText().isEmpty())
         {
             JOptionPane.showMessageDialog(null, "Please complete the form.");
@@ -189,8 +259,6 @@ public class Menu extends javax.swing.JFrame {
                 if (rs.next())
                 {
                     JOptionPane.showMessageDialog(null, "Login Successfully. Welcome back!");
-                    clearForm();
-                    hideForm();
                     if (username.contains("admin"))
                     {
                         new AdminPanel().setVisible(true);
@@ -215,45 +283,6 @@ public class Menu extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, err.getMessage());
             }
         }
-    }//GEN-LAST:event_signinButtonActionPerformed
-
-    private void resetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetButtonActionPerformed
-        // TODO add your handling code here:
-        clearForm();
-    }//GEN-LAST:event_resetButtonActionPerformed
-    
-    public void close()
-    {
-        WindowEvent winClosingEvent = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
-        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosingEvent);
-    }
-    
-    public void clearForm()
-    {
-        usernameTextField.setText("");
-        passwordTextField.setText("");
-    }
-    
-    public void hideForm()
-    {
-        titleLabel.setEnabled(false);
-        usernameLabel.setEnabled(false);
-        usernameTextField.setEnabled(false);
-        passwordLabel.setEnabled(false);
-        passwordTextField.setEnabled(false);
-        signinButton.setEnabled(false);
-        resetButton.setEnabled(false);
-    }
-    
-    public void showForm()
-    {
-        titleLabel.setEnabled(true);
-        usernameLabel.setEnabled(true);
-        usernameTextField.setEnabled(true);
-        passwordLabel.setEnabled(true);
-        passwordTextField.setEnabled(true);
-        signinButton.setEnabled(true);
-        resetButton.setEnabled(true);
     }
     
     /**

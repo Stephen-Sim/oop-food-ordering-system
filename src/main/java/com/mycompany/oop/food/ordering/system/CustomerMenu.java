@@ -77,6 +77,7 @@ public class CustomerMenu extends javax.swing.JFrame {
         jTextField2.setText("jTextField2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("FOOD ORDERING SYSTEM - MENU");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -124,6 +125,8 @@ public class CustomerMenu extends javax.swing.JFrame {
         qtyLabel.setMinimumSize(new java.awt.Dimension(78, 20));
         qtyLabel.setPreferredSize(new java.awt.Dimension(78, 20));
         getContentPane().add(qtyLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 130, -1, 41));
+
+        foodQuantity.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
         getContentPane().add(foodQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 140, 130, -1));
 
         addButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cart.png"))); // NOI18N
@@ -144,8 +147,11 @@ public class CustomerMenu extends javax.swing.JFrame {
         });
         getContentPane().add(resetButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 190, 130, 40));
 
+        customerUsername.setBackground(new java.awt.Color(255, 255, 255));
+        customerUsername.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        customerUsername.setForeground(new java.awt.Color(255, 255, 255));
         customerUsername.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        getContentPane().add(customerUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, 110, 20));
+        getContentPane().add(customerUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 0, 110, 20));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -167,9 +173,9 @@ public class CustomerMenu extends javax.swing.JFrame {
         getContentPane().add(selectedFoodId, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, -1, 20));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Menu.jpg"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 410));
 
-        jMenu1.setText("Cutomer");
+        jMenu1.setText("Customer");
 
         cartItemMenu.setText("Cart");
         cartItemMenu.addActionListener(new java.awt.event.ActionListener() {
