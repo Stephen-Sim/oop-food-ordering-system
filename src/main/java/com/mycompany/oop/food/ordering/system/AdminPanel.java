@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -30,6 +31,7 @@ public class AdminPanel extends javax.swing.JFrame {
     public AdminPanel() {
         initComponents();
         foodId.setVisible(false);
+        foodQuantity.setModel(new SpinnerNumberModel(0, 0, 100, 1));
         loadTable();
     }
 

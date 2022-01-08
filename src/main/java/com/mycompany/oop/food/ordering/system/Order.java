@@ -10,14 +10,18 @@ package com.mycompany.oop.food.ordering.system;
  */
 public class Order {
     private int orderId;
+    private int foodId;
+    private String foodName;
     private String orderTime;
     private float orderTotalPrice;
     private int orderStatus;
+    private int orderQuantity;
     private String customerName;
     
     public Order() {
     }
-
+    
+    // FOR ADMIN VIEW  HISTORY
     public Order(int orderId, String orderTime, float orderTotalPrice, int orderStatus, String customerName) {
         this.orderId = orderId;
         this.orderTime = orderTime;
@@ -32,6 +36,14 @@ public class Order {
 
     public void setOrderId(int orderId) {
         this.orderId = orderId;
+    }
+
+    public int getFoodId() {
+        return foodId;
+    }
+
+    public void setFoodId(int foodId) {
+        this.foodId = foodId;
     }
 
     public String getOrderTime() {
@@ -57,8 +69,6 @@ public class Order {
     public void setOrderStatus(int orderStatus) {
         this.orderStatus = orderStatus;
     }
-    
-    
 
     public String getCustomerName() {
         return customerName;
@@ -67,5 +77,22 @@ public class Order {
     public void setCustomerName(String customerName) {
         this.customerName = customerName;
     }
+
+    public String getFoodName() {
+        return foodName;
+    }
+
+    public void setFoodName(String foodName) {
+        this.foodName = foodName;
+    }
+
+    public int getOrderQuantity() {
+        return orderQuantity;
+    }
+
+    public void setOrderQuantity(int orderQuantity) {
+        this.orderQuantity = orderQuantity;
+    }
+    
     
 }

@@ -146,6 +146,7 @@ public class Registration extends javax.swing.JFrame {
                  JOptionPane.showMessageDialog(null, err.getMessage());
             }
         }
+        
     }//GEN-LAST:event_signupButtonActionPerformed
 
     private void resetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetButtonActionPerformed

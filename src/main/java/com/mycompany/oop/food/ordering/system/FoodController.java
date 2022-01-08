@@ -116,69 +116,14 @@ public class FoodController extends Controller{
             JOptionPane.showMessageDialog(null, err.getMessage());
         }
     }
-    
-    public void addToCart(Food food){
-        try{
-            FoodController controller = new FoodController();
-            controller.connectToDatabase();
-            String sql = "INSERT INTO food_order (food_id, quantity) VALUES(?, ?)";
-            
-            PreparedStatement ps = this.conn.prepareStatement(sql);
 
-            ps.setInt(1, food.getFoodId());
-            ps.setInt(2, food.getFoodQuantity());
-            ps.execute();
-            
-            JOptionPane.showMessageDialog(null, "Food Successfully Added to Cart");
-        } catch (SQLException err){
-            JOptionPane.showMessageDialog(null, err.getMessage());
-        }
-    }
-    
-    public void updateCart(Food food){
-        try{
-            FoodController controller = new FoodController();
-            controller.connectToDatabase();
-            String sql = "UPDATE food_order SET quantity = ? WHERE food_id = ?";
-            
-            PreparedStatement ps = this.conn.prepareStatement(sql);
-
-            ps.setInt(1, food.getFoodQuantity());
-            ps.setInt(2, food.getFoodId());
-            ps.execute();
-            
-            JOptionPane.showMessageDialog(null, "Cart Updated");
-        } catch (SQLException err){
-            JOptionPane.showMessageDialog(null, err.getMessage());
-        }
-    }
-    
-    public void deleteCart(int id) {
-        try
-        {
-            FoodController controller = new FoodController();
-            controller.connectToDatabase();
-            String sql = "DELETE FROM food_order WHERE food_id = ?";
-           
-            PreparedStatement ps = this.conn.prepareStatement(sql);
-            ps.setInt(1, id);
-            ps.executeUpdate();
-            
-            JOptionPane.showMessageDialog(null, "Food Deleted From Cart");
-        }catch (SQLException err){
-            JOptionPane.showMessageDialog(null, err.getMessage());
-        }
-    }
-    
-    public ArrayList<Food> fetchCart()
-    {
+    public ArrayList<Food> fetchAllWhereIsNotZero() {
         ArrayList <Food> foodList = new ArrayList();
         try
         {
             FoodController controller = new FoodController();
             controller.connectToDatabase();
-            String sql = "SELECT fo.food_id, f.NAME, f.price, fo.quantity "
-                    + "FROM food_order fo INNER JOIN foods f ON fo.food_id = f.id";
+            String sql = "SELECT * FROM foods where stock > 0";
            
             PreparedStatement ps = this.conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -186,10 +131,11 @@ public class FoodController extends Controller{
             while(rs.next())
             {
                 Food food = new Food();
-                food.setFoodId(rs.getInt("food_id"));
+                food.setFoodId(rs.getInt("id"));
                 food.setFoodName(rs.getString("name"));
                 food.setFoodPrice(rs.getFloat("price"));
-                food.setFoodQuantity(rs.getInt("quantity"));
+                food.setFoodType(rs.getString("food_type"));
+                food.setFoodQuantity(rs.getInt("stock"));
                 
                 foodList.add(food);
             }

@@ -4,6 +4,8 @@
  */
 package com.mycompany.oop.food.ordering.system;
 
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -15,12 +17,22 @@ import javax.swing.table.DefaultTableModel;
  */
 public class CustomerCart extends javax.swing.JFrame {
 
-    public FoodController controller = new FoodController();
+    public OrderController controller = new OrderController();
+    public int userId;
     /**
      * Creates new form CustomerCart
      */
+    
     public CustomerCart() {
         initComponents();
+        loadTable();
+    }
+
+    public CustomerCart(int userId) {
+        this.userId = userId;
+        initComponents();
+        selectedFoodId.setVisible(false);
+        selectedOrderId.setVisible(false);
         loadTable();
     }
 
@@ -33,84 +45,64 @@ public class CustomerCart extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        totalAmount = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         cartTable = new javax.swing.JTable();
-        jLabel2 = new javax.swing.JLabel();
-        foodNo = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        foodQuantity = new javax.swing.JSpinner();
-        editButton = new javax.swing.JButton();
         confirmButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        selectedOrderId = new javax.swing.JLabel();
+        selectedFoodId = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        menuMenuItem = new javax.swing.JCheckBoxMenuItem();
-        logoutMenuItem = new javax.swing.JCheckBoxMenuItem();
+        MenuItem = new javax.swing.JMenuItem();
+        logOutItemMenu = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("CART");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
+        totalAmount.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        totalAmount.setForeground(new java.awt.Color(255, 255, 255));
+        totalAmount.setText("0.00");
+        getContentPane().add(totalAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 400, -1, -1));
 
         cartTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "id", "Food No", "Food Name", "Food Price", "Quantity"
+                "food_id", "order_id", "#", "Food Name", "Order Quantity", "Total Price"
             }
         ));
+        cartTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cartTableMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(cartTable);
         if (cartTable.getColumnModel().getColumnCount() > 0) {
             cartTable.getColumnModel().getColumn(0).setMinWidth(0);
             cartTable.getColumnModel().getColumn(0).setPreferredWidth(0);
             cartTable.getColumnModel().getColumn(0).setMaxWidth(0);
-            cartTable.getColumnModel().getColumn(1).setPreferredWidth(10);
+            cartTable.getColumnModel().getColumn(1).setMinWidth(0);
+            cartTable.getColumnModel().getColumn(1).setMaxWidth(0);
+            cartTable.getColumnModel().getColumn(2).setMinWidth(30);
+            cartTable.getColumnModel().getColumn(2).setMaxWidth(30);
         }
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 54, -1, 311));
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Food No:");
-        jLabel2.setMaximumSize(new java.awt.Dimension(78, 20));
-        jLabel2.setMinimumSize(new java.awt.Dimension(78, 20));
-        jLabel2.setPreferredSize(new java.awt.Dimension(78, 20));
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(466, 54, -1, 41));
-
-        foodNo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                foodNoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(foodNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(554, 66, 180, -1));
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Quantity:");
-        jLabel3.setMaximumSize(new java.awt.Dimension(78, 20));
-        jLabel3.setMinimumSize(new java.awt.Dimension(78, 20));
-        jLabel3.setPreferredSize(new java.awt.Dimension(78, 20));
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(466, 101, -1, 41));
-        getContentPane().add(foodQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(554, 113, 180, -1));
-
-        editButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Edit.png"))); // NOI18N
-        editButton.setText("Edit");
-        editButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editButtonActionPerformed(evt);
-            }
-        });
-        getContentPane().add(editButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 160, 100, 40));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 54, 730, 311));
 
         confirmButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Confirm.png"))); // NOI18N
         confirmButton.setText("Confirm Order");
-        getContentPane().add(confirmButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 220, 218, 40));
+        confirmButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(confirmButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 400, 150, 40));
 
         deleteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Delete.png"))); // NOI18N
         deleteButton.setText("Delete");
@@ -119,30 +111,45 @@ public class CustomerCart extends javax.swing.JFrame {
                 deleteButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(deleteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 160, 100, 40));
+        getContentPane().add(deleteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 400, 100, 40));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Menu.jpg"))); // NOI18N
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("CART");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, -1, -1));
 
-        jMenu1.setText("File");
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Total Amount (RM):");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, -1, -1));
 
-        menuMenuItem.setSelected(true);
-        menuMenuItem.setText("Menu");
-        menuMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        selectedOrderId.setText("NULL");
+        getContentPane().add(selectedOrderId, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 460, -1, -1));
+
+        selectedFoodId.setText("NULL");
+        getContentPane().add(selectedFoodId, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 460, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Menu.jpg"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 530));
+
+        jMenu1.setText("Customer");
+
+        MenuItem.setText("Menu");
+        MenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuMenuItemActionPerformed(evt);
+                MenuItemActionPerformed(evt);
             }
         });
-        jMenu1.add(menuMenuItem);
+        jMenu1.add(MenuItem);
 
-        logoutMenuItem.setSelected(true);
-        logoutMenuItem.setText("Log Out");
-        logoutMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        logOutItemMenu.setText("Log Out");
+        logOutItemMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logoutMenuItemActionPerformed(evt);
+                logOutItemMenuActionPerformed(evt);
             }
         });
-        jMenu1.add(logoutMenuItem);
+        jMenu1.add(logOutItemMenu);
 
         jMenuBar1.add(jMenu1);
 
@@ -151,86 +158,90 @@ public class CustomerCart extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void logoutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutMenuItemActionPerformed
-        new Menu().setVisible(true);
-    }//GEN-LAST:event_logoutMenuItemActionPerformed
-
-    private void foodNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_foodNoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_foodNoActionPerformed
-
-    private void menuMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuMenuItemActionPerformed
-        new CustomerMenu().setVisible(true);
-    }//GEN-LAST:event_menuMenuItemActionPerformed
-
-    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
-        // TODO add your handling code here:
-        if(foodNo.getText().equals("NULL"))
-            JOptionPane.showMessageDialog(null, "All Field are Required!!!"); 
-        else
-        {
-            int food_id = Integer.parseInt(foodNo.getText());
-            String food_name = "0";
-            String food_type = "0";
-            float food_price = 0;
-            int food_quantity = (Integer) foodQuantity.getValue();
-            
-            controller.updateCart(new Food(food_id, food_name, food_type, food_price, food_quantity));
-        }
-        
-        clearForm();
-        loadTable();
-    }//GEN-LAST:event_editButtonActionPerformed
-
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         // TODO add your handling code here:
-        if(foodNo.getText().equals("NULL"))
-            JOptionPane.showMessageDialog(null, "All FIeld are Required!!!"); 
+        if(selectedFoodId.getText().equals("NULL") || selectedOrderId.getText().equals("NULL"))
+        {
+            JOptionPane.showMessageDialog(null, "Please choose an Item !!!");
+        }
         else
         {
-            controller.deleteCart(Integer.parseInt(foodNo.getText()));
-        }
+            int orderId = Integer.parseInt(selectedOrderId.getText());
+            int foodId = Integer.parseInt(selectedFoodId.getText());
         
-        clearForm();
-        loadTable();
+            controller.deleteOrderFromCart(orderId, foodId);
+
+            loadTable();
+        }
     }//GEN-LAST:event_deleteButtonActionPerformed
 
-    private void foodTableMouseClicked(java.awt.event.MouseEvent evt) {                                       
+    private void MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        new CustomerMenu(this.userId).setVisible(true);
+    }//GEN-LAST:event_MenuItemActionPerformed
+
+    private void logOutItemMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutItemMenuActionPerformed
+        // TODO add your handling code here:
+        close();
+        new Menu().setVisible(true);
+    }//GEN-LAST:event_logOutItemMenuActionPerformed
+
+    private void cartTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cartTableMouseClicked
         // TODO add your handling code here:
         DefaultTableModel tableContent = (DefaultTableModel) cartTable.getModel();
         
-        foodNo.setText(tableContent.getValueAt(cartTable.getSelectedRow(), 0).toString());
-        foodQuantity.setValue(tableContent.getValueAt(cartTable.getSelectedRow(), 5));
-    } 
-    
-    public void clearForm()
-    {
-        foodNo.setText("");
-        foodQuantity.setValue(0);
-    }
-    
+        selectedFoodId.setText(tableContent.getValueAt(cartTable.getSelectedRow(), 0).toString());
+        selectedOrderId.setText(tableContent.getValueAt(cartTable.getSelectedRow(), 1).toString());
+    }//GEN-LAST:event_cartTableMouseClicked
+
+    private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
+        // TODO add your handling code here:
+        if(cartTable.getRowCount() == 0)
+        {
+            JOptionPane.showMessageDialog(null, "PLease Already Cleared");
+        }
+        else
+        {
+           controller.confirmOrder(this.userId, Float.parseFloat(totalAmount.getText()));
+
+            loadTable(); 
+        }
+    }//GEN-LAST:event_confirmButtonActionPerformed
+
      private void loadTable(){
         ((DefaultTableModel) cartTable.getModel()).setNumRows(0);
-        ArrayList <Food> foodList = new ArrayList();
+        ArrayList <Order> orderList = new ArrayList();
         
         DecimalFormat df = new DecimalFormat("0.00");
        
-        foodList = controller.fetchCart();
+        orderList = controller.fetchCart(this.userId);
         
         DefaultTableModel tableContent = (DefaultTableModel) cartTable.getModel();
         
         Object rowData[] = new Object[6];
         
-        for(int i = 0; i < foodList.size(); i++)
+        float sum = 0;
+        
+        for(int i = 0; i < orderList.size(); i++)
         {
-            rowData[0] = foodList.get(i).getFoodId();
-            rowData[1] = foodList.get(i).getFoodId();
-            rowData[2] = foodList.get(i).getFoodName();
-            rowData[3] = df.format(foodList.get(i).getFoodPrice());
-            rowData[4] = foodList.get(i).getFoodQuantity();
-            
+            rowData[0] = orderList.get(i).getFoodId();
+            rowData[1] = orderList.get(i).getOrderId();
+            rowData[2] = i + 1;
+            rowData[3] = orderList.get(i).getFoodName();
+            rowData[4] = orderList.get(i).getOrderQuantity();
+            rowData[5] = df.format(orderList.get(i).getOrderTotalPrice());
             tableContent.addRow(rowData);
+            
+            System.out.println(orderList.get(i).getOrderTotalPrice());
+            
+            sum += orderList.get(i).getOrderTotalPrice();
         }
+        
+        totalAmount.setText(df.format(sum));
+        
+        selectedFoodId.setText("NULL");
+        selectedOrderId.setText("NULL");
     }
     /**
      * @param args the command line arguments
@@ -266,22 +277,28 @@ public class CustomerCart extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void close()
+    {
+        WindowEvent winClosingEvent = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosingEvent);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem MenuItem;
     private javax.swing.JTable cartTable;
     private javax.swing.JButton confirmButton;
     private javax.swing.JButton deleteButton;
-    private javax.swing.JButton editButton;
-    private javax.swing.JTextField foodNo;
-    private javax.swing.JSpinner foodQuantity;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JCheckBoxMenuItem logoutMenuItem;
-    private javax.swing.JCheckBoxMenuItem menuMenuItem;
+    private javax.swing.JMenuItem logOutItemMenu;
+    private javax.swing.JLabel selectedFoodId;
+    private javax.swing.JLabel selectedOrderId;
+    private javax.swing.JLabel totalAmount;
     // End of variables declaration//GEN-END:variables
 }
