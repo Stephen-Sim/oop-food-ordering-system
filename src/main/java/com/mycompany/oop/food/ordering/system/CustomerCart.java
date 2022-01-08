@@ -160,12 +160,19 @@ public class CustomerCart extends javax.swing.JFrame {
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         // TODO add your handling code here:
-        int orderId = Integer.parseInt(selectedOrderId.getText());
-        int foodId = Integer.parseInt(selectedFoodId.getText());
+        if(selectedFoodId.getText().equals("NULL") || selectedOrderId.getText().equals("NULL"))
+        {
+            JOptionPane.showMessageDialog(null, "Please choose an Item !!!");
+        }
+        else
+        {
+            int orderId = Integer.parseInt(selectedOrderId.getText());
+            int foodId = Integer.parseInt(selectedFoodId.getText());
         
-        controller.deleteOrderFromCart(orderId, foodId);
+            controller.deleteOrderFromCart(orderId, foodId);
 
-        loadTable();
+            loadTable();
+        }
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemActionPerformed
@@ -190,9 +197,16 @@ public class CustomerCart extends javax.swing.JFrame {
 
     private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
         // TODO add your handling code here:
-        controller.confirmOrder(this.userId, Float.parseFloat(totalAmount.getText()));
+        if(cartTable.getRowCount() == 0)
+        {
+            JOptionPane.showMessageDialog(null, "PLease Already Cleared");
+        }
+        else
+        {
+           controller.confirmOrder(this.userId, Float.parseFloat(totalAmount.getText()));
 
-        loadTable();
+            loadTable(); 
+        }
     }//GEN-LAST:event_confirmButtonActionPerformed
 
      private void loadTable(){
@@ -225,6 +239,9 @@ public class CustomerCart extends javax.swing.JFrame {
         }
         
         totalAmount.setText(df.format(sum));
+        
+        selectedFoodId.setText("NULL");
+        selectedOrderId.setText("NULL");
     }
     /**
      * @param args the command line arguments
