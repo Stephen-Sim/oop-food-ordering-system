@@ -65,6 +65,7 @@ public class CustomerMenu extends javax.swing.JFrame {
         foodLabel1 = new javax.swing.JLabel();
         selectedFoodPrice = new javax.swing.JLabel();
         selectedFoodId = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         cartItemMenu = new javax.swing.JMenuItem();
@@ -79,6 +80,7 @@ public class CustomerMenu extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("MENU");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
 
@@ -107,6 +109,7 @@ public class CustomerMenu extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 54, -1, 311));
 
         selectedFood.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        selectedFood.setForeground(new java.awt.Color(255, 255, 255));
         selectedFood.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         selectedFood.setText("No Food Selected");
         selectedFood.setMaximumSize(new java.awt.Dimension(78, 20));
@@ -115,6 +118,7 @@ public class CustomerMenu extends javax.swing.JFrame {
         getContentPane().add(selectedFood, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 80, 160, 41));
 
         qtyLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        qtyLabel.setForeground(new java.awt.Color(255, 255, 255));
         qtyLabel.setText("Quantity:");
         qtyLabel.setMaximumSize(new java.awt.Dimension(78, 20));
         qtyLabel.setMinimumSize(new java.awt.Dimension(78, 20));
@@ -144,10 +148,12 @@ public class CustomerMenu extends javax.swing.JFrame {
         getContentPane().add(customerUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, 110, 20));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Welcome!");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 0, -1, -1));
 
         foodLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        foodLabel1.setForeground(new java.awt.Color(255, 255, 255));
         foodLabel1.setText("Food Name:");
         foodLabel1.setMaximumSize(new java.awt.Dimension(78, 20));
         foodLabel1.setMinimumSize(new java.awt.Dimension(78, 20));
@@ -159,6 +165,9 @@ public class CustomerMenu extends javax.swing.JFrame {
 
         selectedFoodId.setText("NULL");
         getContentPane().add(selectedFoodId, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, -1, 20));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Menu.jpg"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jMenu1.setText("Cutomer");
 
@@ -314,6 +323,7 @@ public class CustomerMenu extends javax.swing.JFrame {
     private javax.swing.JSpinner foodQuantity;
     private javax.swing.JTable foodTable;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;

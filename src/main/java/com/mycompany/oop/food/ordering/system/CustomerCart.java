@@ -54,6 +54,8 @@ public class CustomerCart extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         selectedOrderId = new javax.swing.JLabel();
         selectedFoodId = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         MenuItem = new javax.swing.JMenuItem();
@@ -63,6 +65,7 @@ public class CustomerCart extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         totalAmount.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        totalAmount.setForeground(new java.awt.Color(255, 255, 255));
         totalAmount.setText("0.00");
         getContentPane().add(totalAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 400, -1, -1));
 
@@ -111,10 +114,12 @@ public class CustomerCart extends javax.swing.JFrame {
         getContentPane().add(deleteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 400, 100, 40));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("CART");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Total Amount (RM):");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, -1, -1));
 
@@ -123,6 +128,10 @@ public class CustomerCart extends javax.swing.JFrame {
 
         selectedFoodId.setText("NULL");
         getContentPane().add(selectedFoodId, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 460, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Menu.jpg"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 530));
 
         jMenu1.setText("Customer");
 
@@ -263,6 +272,8 @@ public class CustomerCart extends javax.swing.JFrame {
     private javax.swing.JTable cartTable;
     private javax.swing.JButton confirmButton;
     private javax.swing.JButton deleteButton;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
