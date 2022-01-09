@@ -343,7 +343,7 @@ public class AdminPanel extends javax.swing.JFrame {
     private void reportMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportMenuItemActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        new AdminViewOrderHisotry().setVisible(true);
+        new AdminViewOrderHistory().setVisible(true);
     }//GEN-LAST:event_reportMenuItemActionPerformed
     
     public void clearForm(){

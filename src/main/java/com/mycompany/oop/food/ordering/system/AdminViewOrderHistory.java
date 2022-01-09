@@ -15,12 +15,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author USER
  */
-public class AdminViewOrderHisotry extends javax.swing.JFrame {
+public class AdminViewOrderHistory extends javax.swing.JFrame {
     public OrderController controller = new OrderController();
     /**
      * Creates new form AdminViewOrderHisotry
      */
-    public AdminViewOrderHisotry() {
+    public AdminViewOrderHistory() {
         initComponents();
         loadTable();
     }
@@ -158,20 +158,21 @@ public class AdminViewOrderHisotry extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdminViewOrderHisotry.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminViewOrderHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdminViewOrderHisotry.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminViewOrderHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdminViewOrderHisotry.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminViewOrderHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdminViewOrderHisotry.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminViewOrderHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdminViewOrderHisotry().setVisible(true);
+                new AdminViewOrderHistory().setVisible(true);
             }
         });
     }
